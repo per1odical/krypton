@@ -6,12 +6,30 @@
   "module": "dist/krypton-sdk.esm.js",
   "browser": "dist/krypton-sdk.umd.js",
   "types": "dist/index.d.ts",
+  "homepage": "https://per1odical.com/krypton",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/per1odical/krypton.git"
+  },
+  "bugs": {
+    "url": "https://github.com/per1odical/krypton/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "keywords": [
+    "network",
+    "p2p"
+  ],
   "scripts": {
     "build": "microbundle ./src/index.ts",
     "build:watch": "microbundle --watch ./src/index.ts"
   },
   "files": [
-    "dist"
+    "dist",
+    "src",
+    "README.md"
   ],
   "devDependencies": {
     "@types/node": "^20.14",
