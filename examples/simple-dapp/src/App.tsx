@@ -26,7 +26,6 @@ function App() {
         },
       });
       setdapp(d);
-      await d.listen();
     })()
   }, [])
 
@@ -35,15 +34,15 @@ function App() {
       {dapp && !connected ? (
         <div>
           <p>{connectionURI}</p>
-          <button onClick={() => setConnectionURI((dapp.connectorUri()?.toString()) ?? "No connector URI")}>Refresh URI</button>
+          <button onClick={() => setConnectionURI((dapp.getConnectionMultiaddr()?.toString()) ?? "No connector URI")}>Refresh URI</button>
           <button onClick={() => console.debug(dapp)}>Debug</button>
         </div>
       )
         : dapp && connected ? (
           <div>
-            <h1>Connected to {dapp.peer()?.name}</h1>
+            <h1>Connected to {dapp.getConnectedWallet()?.name}</h1>
             {(!addresses || addresses.length < 1) && <button onClick={async () => {
-              const addresses: { [key: number]: string[] } = await dapp.req("kr_getIdentities", []);
+              const addresses = await dapp.req("kr_getIdentities", []);
               // Just show mainnet addresses
               setAddresses(addresses[1]);
             }}>Get Addresses</button>}

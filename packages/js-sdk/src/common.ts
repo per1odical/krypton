@@ -12,9 +12,6 @@ export const GATER: ConnectionGater = {
   denyDialPeer: () => false,
 }
 
-export type SteamMessage = string | Uint8Array;
-export type StreamSender = (message: SteamMessage) => void;
-
 export type DappIdentity = {
   /// The name of the dapp
   name: string;

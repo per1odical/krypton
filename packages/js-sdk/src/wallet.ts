@@ -8,11 +8,8 @@ import * as filters from '@libp2p/websockets/filters'
 import { createLibp2p, type Libp2p } from 'libp2p'
 import { multiaddr, type Multiaddr } from '@multiformats/multiaddr'
 import { DappIdentity, GATER, PROTOCOL_ID, WalletIdentity } from './common'
+import type { krGetIdentitiesResponse } from './protocol'
 import { pipe } from 'it-pipe'
-
-export type krGetIdentitiesResponse = {
-  [key: number]: string[];
-};
 
 export type WalletCallbacks = {
   'kr_connected'?: (dapp: DappIdentity) => WalletIdentity;
