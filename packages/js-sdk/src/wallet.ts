@@ -38,12 +38,12 @@ export const newWalletClient = async (connectionUri: string): Promise<WalletClie
 
 export class WalletClient {
   dialer: Libp2p;
-  connectionUri: Multiaddr;
 
+  _connection_uri: Multiaddr;
   _sender_queue: Uint8Array[];
 
   constructor(connectionUri: Multiaddr, dialer: Libp2p) {
-    this.connectionUri = connectionUri;
+    this._connection_uri = connectionUri;
     this.dialer = dialer;
     this._sender_queue = [];
   }
@@ -58,7 +58,7 @@ export class WalletClient {
     };
     try {
       // Dial the protocol and get the stream
-      const stream = await this.dialer.dialProtocol(this.connectionUri, PROTOCOL_ID, {
+      const stream = await this.dialer.dialProtocol(this._connection_uri, PROTOCOL_ID, {
         signal: AbortSignal.timeout(50_000) // Optional timeout for dialing
       });
 
