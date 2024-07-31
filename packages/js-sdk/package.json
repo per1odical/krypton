@@ -1,0 +1,35 @@
+{
+  "name": "@krypton-js/sdk",
+  "version": "0.1.0",
+  "license": "MPL-2.0",
+  "main": "dist/krypton-sdk.cjs.js",
+  "module": "dist/krypton-sdk.esm.js",
+  "browser": "dist/krypton-sdk.umd.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "microbundle ./src/index.ts",
+    "build:watch": "microbundle --watch ./src/index.ts"
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@types/node": "^20.14",
+    "microbundle": "^0.15.1",
+    "typescript": "^5.5"
+  },
+  "dependencies": {
+    "@chainsafe/libp2p-noise": "^15.1",
+    "@chainsafe/libp2p-yamux": "^6.0",
+    "@libp2p/circuit-relay-v2": "^1.1",
+    "@libp2p/identify": "^2.1",
+    "@libp2p/webrtc": "^4.1",
+    "@libp2p/websockets": "^8.1",
+    "@multiformats/multiaddr": "^12.3",
+    "@multiformats/multiaddr-matcher": "^1.2",
+    "it-pipe": "^3.0.1",
+    "libp2p": "^1.8",
+    "node-datachannel": "^0.10.1",
+    "node-domexception": "^2.0.1"
+  }
+}

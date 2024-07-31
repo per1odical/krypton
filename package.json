@@ -1,0 +1,10 @@
+{
+  "name": "krypton",
+  "private": true,
+  "license": "MPL-2.0",
+  "workspaces": [
+    "packages/*",
+    "services/*",
+    "examples/*"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "@krypton/ts-relay",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "license": "MPL-2.0",
+  "scripts": {
+    "build": "tsc",
+    "start": "DEBUG=\"*libp2p:circuit-relay*\" node dist/index.js"
+  },
+  "dependencies": {
+    "@chainsafe/libp2p-noise": "^15.1.0",
+    "@chainsafe/libp2p-yamux": "^6.0.2",
+    "@libp2p/circuit-relay-v2": "^1.1.2",
+    "@libp2p/identify": "^2.1.2",
+    "@libp2p/websockets": "^8.1.2",
+    "libp2p": "^1.8.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4",
+    "@types/node": "^18.0.0"
+  }
+}
