@@ -1,7 +1,7 @@
 # Krypton 0.1.0
 > [!NOTE] This has been written enterly by `per1odical` and has not been reviewed by anyone else. This should be considered a draft and not final. Realistically this should be an EIP developed by the community.
 
-## Connection Flow
+## Connection Flow
 ```mermaid
 sequenceDiagram
     Dapp->>Wallet: Connection URI Passed
