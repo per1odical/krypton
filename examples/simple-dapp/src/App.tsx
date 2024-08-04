@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import { DappClient, newDappClient } from '@krypton-js/sdk'
-import { multiaddr } from "@multiformats/multiaddr"
-
-// TODO: change before running
-const SIGNALLER = "/ip4/127.0.0.1/tcp/3000/ws/p2p/...";
+// TODO: Use this when using a custom signaller
+// import { multiaddr } from "@multiformats/multiaddr"
 
 function App() {
   const [dapp, setdapp] = useState<DappClient | undefined>()
@@ -20,7 +18,7 @@ function App() {
           1: ["kr_identities", "kr_sign"]
         }
       }, {
-        signaller: multiaddr(SIGNALLER),
+        // signaller: multiaddr("/ip4/.../tcp/.../ws"),
         onConnect: () => {
           setConnected(true);
         },

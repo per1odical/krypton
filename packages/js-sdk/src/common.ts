@@ -4,7 +4,8 @@ import type { ConnectionGater } from "@libp2p/interface";
 export const PROTOCOL_ID = "/krypton/1.0.0";
 
 export const SIGNALLERS = [
-  // multiaddr("Signaller Soon.") // @per1odical
+  multiaddr("/ip4/51.68.215.227/tcp/80/ws"), // @per1odical
+  multiaddr("/ip4/54.38.79.230/tcp/80/ws"), // @per1odical
 ];
 
 export const GATER: ConnectionGater = {

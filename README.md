@@ -14,7 +14,7 @@ Krypton uses Libp2p's WebRTC transport to establish a direct connection between 
 ## Want to Help?
 There are currently 3 ways to help:
 1. Contribute to the codebase & help test!
-2. Run a signaling server, and make a PR to add it to the [`signallers.ts`](./packages/browser-sdk/src/signallers.ts)
+2. Run a signaling server, and make a PR to add it to the [`common.ts`](./packages/browser-sdk/src/common.ts)
 3. Help make the protocol an EIP.
 
 ### Known Issues
@@ -26,7 +26,7 @@ While testing I ran into some issues or points that need to be addressed, they a
 1. Clone the repository and have node + yarn installed.
 2. Run `yarn` in the root directory.
 3. cd into `services/ts-relay`, run `yarn build` and then `yarn start`.
-4. cd into `examples/simple-dapp`, change the `SIGNALLER` in `App.tsx` and run `yarn start`.
+4. cd into `examples/simple-dapp` and run `yarn start`.
 5. cd into `examples/simple-wallet` and run `yarn start`.
 6. have fun using a P2P connection between the wallet and dapp! 🎉
 
