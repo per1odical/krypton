@@ -8,21 +8,37 @@ import * as filters from '@libp2p/websockets/filters'
 import type { IncomingStreamData } from '@libp2p/interface';
 import { WebRTC } from '@multiformats/multiaddr-matcher'
 import { createLibp2p, type Libp2p } from 'libp2p'
-import type { Multiaddr } from '@multiformats/multiaddr'
+import { multiaddr, type Multiaddr } from '@multiformats/multiaddr'
 import { SIGNALLERS, PROTOCOL_ID, GATER, type DappIdentity, type WalletIdentity } from './common'
 import type { krMethodArgs, krMethodReturn, krMethods } from './protocol'
 import { pipe } from 'it-pipe'
 
 export type RequestOptions = {
+  /// Time in milliseconds to wait for a response before timing out.
   timeout_ms?: number;
 };
 
 export type DappOptions = {
+  /// The signaller to use for the dapp.
   signaller?: Multiaddr;
+  /// Maximum time to connect to the signaller. Defaults to 5000ms (5s).
+  signaller_timeout_ms?: number;
+  /// If true, the dapp will not accept the `window.krypton` preferences.
+  override_user_preferences?: boolean;
+  /// Callback used when the wallet is connected
   onConnect?: (wallet: WalletIdentity) => void;
 };
 
 export const newDappClient = async (identity: DappIdentity, opts?: DappOptions): Promise<DappClient> => {
+  let signallers = (opts?.override_user_preferences ?? false)
+    ? SIGNALLERS
+    : ((((<any>window)?.krypton ?? {}).signallers ?? []) as string[])
+      .map(s => { try { return multiaddr(s) } catch (e) { return undefined } })
+      .filter(s => s != undefined) as Multiaddr[];
+
+  if (signallers.length < 1 && !opts?.signaller)
+    throw new Error('No signallers available');
+
   const selectedSignaller = opts?.signaller ?? SIGNALLERS[Math.floor(Math.random() * SIGNALLERS.length)];
 
   const listener = await createLibp2p({
@@ -45,7 +61,7 @@ export const newDappClient = async (identity: DappIdentity, opts?: DappOptions):
   })
 
   await listener.dial(selectedSignaller, {
-    signal: AbortSignal.timeout(5_000)
+    signal: AbortSignal.timeout(opts?.signaller_timeout_ms ?? 5_000)
   })
 
   return new DappClient(identity, selectedSignaller, listener, opts);
